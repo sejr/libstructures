@@ -2,7 +2,7 @@
 
 ## Motivation
 
-The goal here is to provide a library of common data structures that is easy to ramp up productivity and difficult to use incorrectly. You should probably avoid using the library at this point because there's nothing here, and the stuff that *is* here is poorly (if at all) tested.
+The goal here is to provide a library of common data structures that is easy to ramp up productivity and difficult to use incorrectly. You should probably avoid using the library at this point because there's nothing here, and the stuff that _is_ here is poorly (if at all) tested.
 
 That said, you're welcome to submit Issues and Pull Requests to help improve the quality of this library.
 
@@ -23,19 +23,24 @@ This is true with `LinkedListNode`, but with `LinkedList`, we retain a `length` 
 ```c
 int main()
 {
-    int data = 1;
+    int data = 12;
     LinkedListNode *node = LinkedListNode_init(data);
-    LinkedListNode_print(node); // Node { data: 1, next: 0x0 }
-    
+    LinkedListNode_print(node); // Node { data: 12, next: 0x0 }
+
     LinkedList *list = LinkedList_init(node);
     assert(list->length == 1);
-    assert(list->head->data == 1);
-    assert(list->tail->data == 1);
+    assert(list->head->data == 12);
+    assert(list->tail->data == 12);
 
-    LinkedList_append(list, LinkedListNode_init(2));
+    LinkedList_append(list, LinkedListNode_init(99));
     assert(list->length == 2);
-    assert(list->head->data == 1);
-    assert(list->tail->data == 2);
+    assert(list->head->data == 12);
+    assert(list->tail->data == 99);
+
+    LinkedList_append(list, LinkedListNode_init(37));
+    assert(list->length == 3);
+    assert(list->head->data == 12);
+    assert(list->tail->data == 37);
 }
 ```
 
@@ -54,13 +59,21 @@ children, then it is known as a _leaf_ node.
 ```c
 int main()
 {
-    BinaryTreeNode *root = BinaryTreeNode_init(1);
-    root->left = BinaryTreeNode_init(2);
-    root->right = BinaryTreeNode_init(3);
-    root->right->right = BinaryTreeNode_init(4);
-    root->right->right->left = BinaryTreeNode_init(5);
+    BinaryTreeNode *root = BinaryTreeNode_init(2);
 
-    // Prints the binary tree in human-readable format
+    // Second level
+    root->left = BinaryTreeNode_init(7);
+    root->right = BinaryTreeNode_init(5);
+
+    // Third level
+    root->left->left = BinaryTreeNode_init(2);
+    root->left->right = BinaryTreeNode_init(6);
+    root->right->right = BinaryTreeNode_init(9);
+
+    // Fourth level
+    root->left->right->left = BinaryTreeNode_init(5);
+    root->left->right->right = BinaryTreeNode_init(11);
+
     BinaryTreeNode_print(root);
 }
 ```
