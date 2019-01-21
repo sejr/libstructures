@@ -1,10 +1,10 @@
 # libstructures
 
-> Safe, portable data structures in C
-
 ## Motivation
 
-The goal is to provide a safe interface for interacting with data structures you are likely to encounter in an introductory course.
+The goal here is to provide a library of common data structures that is easy to ramp up productivity and difficult to use incorrectly. You should probably avoid using the library at this point because there's nothing here, and the stuff that *is* here is poorly (if at all) tested.
+
+That said, you're welcome to submit Issues and Pull Requests to help improve the quality of this library.
 
 ## Data Structures
 
@@ -25,6 +25,8 @@ int main()
 {
     int data = 1;
     LinkedListNode *node = LinkedListNode_init(data);
+    LinkedListNode_print(node); // Node { data: 1, next: 0x0 }
+    
     LinkedList *list = LinkedList_init(node);
     assert(list->length == 1);
     assert(list->head->data == 1);
