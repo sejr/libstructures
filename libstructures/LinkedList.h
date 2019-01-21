@@ -198,6 +198,12 @@ int LinkedList_append(LinkedList *list, LinkedListNode *node)
     return list->length;
 }
 
+/**
+ * @brief Calls some function on every element in the LinkedList
+ * 
+ * @param list the LinkedList to be processed
+ * @param fn some function that takes a LinkedListNode and returns void
+ */
 void LinkedList_forEach(LinkedList *list, void (*fn)(LinkedListNode *))
 {
     LinkedListNode *temp = list->head;

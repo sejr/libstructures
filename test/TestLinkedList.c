@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 #include "../libstructures/LinkedList.h"
 
 void printNode(LinkedListNode *node)
@@ -9,25 +10,30 @@ void printNode(LinkedListNode *node)
 
 int main()
 {
-    printf("Initializing node\n");
+    // Can initialize LinkedListNode
     LinkedListNode *head = LinkedListNode_init(1);
+    assert(head != NULL);
 
-    printf("Initializing options\n");
+    // Can initialize LinkedListNodeOptions
     LinkedListNodeOptions *options = LinkedListNodeOptions_init(2, 0, head);
+    assert(options != NULL);
 
-    printf("Initializing another node\n");
+    // Can initialize LinkedListNode from LinkedListNodeOptions
     LinkedListNode *next = LinkedListNode_initWithOptions(options);
+    assert(next != NULL);
 
-    printf("List length: %d\n", LinkedListNode_length(head));
+    // Can get length from LinkedListNode
+    int length = LinkedListNode_length(head);
+    assert(length == 2);
 
-    printf("Creating LinkedList\n");
+    // Can initialize LinkedList from LinkedListNode
     LinkedList *list = LinkedList_init(head);
-    printf("LinkedList length: %d\n", list->length);
+    assert(list->length == 2);
 
-    printf("Appending a list node\n");
+    // Can append LinkedListNode to LinkedList
     LinkedList_append(list, LinkedListNode_init(3));
-    printf("LinkedList length: %d\n", list->length);
+    assert(list->length == 3);
 
-    printf("Testing forEach\n");
+    // Can pass a function into LinkedList_forEach
     LinkedList_forEach(list, printNode);
 }
