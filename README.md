@@ -24,6 +24,8 @@ This is true with `LinkedListNode`, but with `LinkedList`, we retain a `length` 
 int main() {
     int data = 1;
     LinkedListNode *node = LinkedListNode_init(data);
+    LinkedListNode_print(node); // Node { data: 1, next: 0x0 }
+    
     LinkedList *list = LinkedList_init(node);
     assert(list->length == 1);
     assert(list->head->data == 1);
