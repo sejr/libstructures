@@ -198,6 +198,28 @@ int LinkedList_append(LinkedList *list, LinkedListNode *node)
     return list->length;
 }
 
+void LinkedListNode_forEach(LinkedListNode *head, void (*fn)(LinkedListNode *))
+{
+    LinkedListNode *temp = head;
+    (*fn)(temp);
+    if (temp->next)
+    {
+        LinkedListNode_forEach(temp->next, (*fn));
+    }
+}
+
+void LinkedListNode_forEachReverse(
+    LinkedListNode *head,
+    void (*fn)(LinkedListNode *))
+{
+    LinkedListNode *temp = head;
+    if (temp->next)
+    {
+        LinkedListNode_forEachReverse(temp->next, (*fn));
+    }
+    (*fn)(temp);
+}
+
 /**
  * @brief Calls some function on every element in the LinkedList
  * 
@@ -206,16 +228,19 @@ int LinkedList_append(LinkedList *list, LinkedListNode *node)
  */
 void LinkedList_forEach(LinkedList *list, void (*fn)(LinkedListNode *))
 {
-    LinkedListNode *temp = list->head;
+    LinkedListNode_forEach(list->head, (*fn));
+}
 
-    while (temp->next)
-    {
-        (*fn)(temp);
-        temp = temp->next;
-    }
-
-    // Don't forget to call the function on the last element in the list!
-    (*fn)(temp);
+/**
+ * @brief Calls some function on every element in the LinkedList, but in
+ * reverse order. Function is called on tail first, head last.
+ * 
+ * @param list 
+ * @param fn 
+ */
+void LinkedList_forEachReverse(LinkedList *list, void (*fn)(LinkedListNode *))
+{
+    LinkedListNode_forEachReverse(list->head, (*fn));
 }
 
 #endif

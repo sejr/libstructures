@@ -29,11 +29,16 @@ int main()
     // Can initialize LinkedList from LinkedListNode
     LinkedList *list = LinkedList_init(head);
     assert(list->length == 2);
+    assert(list->head->data == 1);
+    assert(list->tail->data == 2);
 
     // Can append LinkedListNode to LinkedList
     LinkedList_append(list, LinkedListNode_init(3));
     assert(list->length == 3);
+    assert(list->head->data == 1);
+    assert(list->tail->data == 3);
 
     // Can pass a function into LinkedList_forEach
     LinkedList_forEach(list, printNode);
+    LinkedList_forEachReverse(list, printNode);
 }
