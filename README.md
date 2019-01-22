@@ -4,9 +4,15 @@
 
 ## Motivation
 
-**libstructures** is a modern library that implements common data structures. Our goal is to help developers build safer systems in C by making the library easy to learn and difficult to misuse. At this point in time, however, this library is not production ready.
+> **At this point in time, this library is not production ready.** GitHub Issues and Pull Requests are not just welcome, but encouraged. Thanks for your interest!
 
-You are welcome to submit Issues and Pull Requests to help improve the quality of this library.
+**libstructures** is a modern library that provides a suite of common data structures. Our goal is to help developers build safer systems in C by making the library easy to learn and difficult to misuse.
+
+### Primary Goals
+
+- **`libstructures` should be portable.** While our target use-case is with low-level systems that require thread-safety, it should be easy to integrate this library with any C project. Every data structure exists within a single C header file. To incorporate these data structures into your project, just copy and paste the header files you need.
+
+- **`libstructures` should be approachable.** As great as this library could be, its safety guarantees are useless if it is used incorrectly. We try to reduce the chance of this happening by explicitly defining APIs for all valid operations. At some point we will investigate ways to introduce compile-time errors when this library is used incorrectly.
 
 ---
 
