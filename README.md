@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/logo.svg" height="150px">
+    <img src="./assets/logo.svg" height="100px">
 </p>
 
 ## Motivation
