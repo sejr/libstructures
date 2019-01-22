@@ -34,15 +34,15 @@ int main()
     assert(list->head->data == 12);
     assert(list->tail->data == 12);
 
-    LinkedList_append(list, LinkedListNode_init(99));
-    assert(list->length == 2);
-    assert(list->head->data == 12);
-    assert(list->tail->data == 99);
+    LinkedList *newList = LinkedList_append(list, LinkedListNode_init(99));
+    assert(newList->length == 2);
+    assert(newList->head->data == 12);
+    assert(newList->tail->data == 99);
 
-    LinkedList_append(list, LinkedListNode_init(37));
-    assert(list->length == 3);
-    assert(list->head->data == 12);
-    assert(list->tail->data == 37);
+    LinkedList *final = LinkedList_append(newList, LinkedListNode_init(37));
+    assert(final->length == 3);
+    assert(final->head->data == 12);
+    assert(final->tail->data == 37);
 }
 ```
 
