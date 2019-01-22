@@ -10,6 +10,8 @@
 
 ### Primary Goals
 
+- **`libstructures` should be safe.** The header files in this library define *immutable* data structures that should prevent data races in multithreaded C programs.
+
 - **`libstructures` should be portable.** While our target use-case is with low-level systems that require thread-safety, it should be easy to integrate this library with any C project. Every data structure exists within a single C header file. To incorporate these data structures into your project, just copy and paste the header files you need.
 
 - **`libstructures` should be approachable.** As great as this library could be, its safety guarantees are useless if it is used incorrectly. We try to reduce the chance of this happening by explicitly defining APIs for all valid operations. At some point we will investigate ways to introduce compile-time errors when this library is used incorrectly.
@@ -29,15 +31,13 @@ For each data structure, we plan to provide an immutable implementation as well 
 
 # Linked List
 
-A linked list is a very simple structure with two primary components; some `data` associated with a linked list node, and a pointer to the address of the `next` node in the list. This is the foundation for many other data structures.
+> A Linked list is a linear collection of data elements, whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence. In its most basic form, each node contains: data, and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. [Wikipedia](https://en.wikipedia.org/wiki/Linked_list)
 
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Singly-linked-list.svg">
 </p>
 
-This library provides a bare-bones `LinkedListNode` structure, as well as a wrapper, `LinkedList`, that offers additional functionality (at the cost of requiring additional space). For example, when calculating the length of a linked list, you typically have to iterate through every element in the list and increment some counter.
-
-This is true with `LinkedListNode`, but with `LinkedList`, we retain a `length` data member and update it any time a node is inserted or removed. Thus, the time complexity required to calculate the list length goes from `O(n)` to `O(1)`.
+This library provides a bare-bones `LinkedListNode` structure, as well as a wrapper, `LinkedList`, that offers additional functionality (at the cost of requiring additional space). `LinkedListNode` is a simple structure with two primary components: some `data` associated with the node, and a pointer to the address of the `next` node in the list. This is the foundation for many other data structures.
 
 ## Usage
 
