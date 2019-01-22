@@ -39,6 +39,8 @@ This library provides a bare-bones `LinkedListNode` structure, as well as a wrap
 
 This is true with `LinkedListNode`, but with `LinkedList`, we retain a `length` data member and update it any time a node is inserted or removed. Thus, the time complexity required to calculate the list length goes from `O(n)` to `O(1)`.
 
+## Usage
+
 ```c
 int main()
 {
@@ -63,7 +65,7 @@ int main()
 }
 ```
 
-### Binary Tree
+# Binary Tree
 
 A binary tree is similar to a linked list, except that instead of a single `next` pointer,
 a binary tree instead has two logical children, which are its `left` and `right` nodes.
@@ -74,6 +76,8 @@ a binary tree instead has two logical children, which are its `left` and `right`
 
 The top-level node, which has no _parent_, is known as the _root_ node. If a node has no
 _children_, then it is known as a _leaf_ node.
+
+## Usage
 
 ```c
 int main()
