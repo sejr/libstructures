@@ -68,6 +68,21 @@ BinaryTreeNode *BinaryTreeNode_setRight(
     return newParent;
 }
 
+int BinaryTreeNode_equals(BinaryTreeNode *a, BinaryTreeNode *b)
+{
+    if (a->data != b->data)
+        return 0;
+
+    int left = 1;
+    int right = 1;
+    if (a->left && b->left)
+        left = BinaryTreeNode_equals(a->left, b->left);
+    if (a->right && b->right)
+        right = BinaryTreeNode_equals(a->right, b->right);
+
+    return left && right;
+}
+
 void printDepth(int depth)
 {
     const int SPACE_COUNT = 4;
