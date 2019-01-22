@@ -156,4 +156,52 @@ void BinaryTreeNode_print(BinaryTreeNode *node)
     _BinaryTreeNode_print(node, 0);
 }
 
+void BinaryTreeNode_postorderTraversal(
+    BinaryTreeNode *root,
+    void (*fn)(BinaryTreeNode *))
+{
+    BinaryTreeNode *temp = root;
+    if (root->left)
+    {
+        BinaryTreeNode_postorderTraversal(root->left, (*fn));
+    }
+    if (root->right)
+    {
+        BinaryTreeNode_postorderTraversal(root->right, (*fn));
+    }
+    (*fn)(temp);
+}
+
+void BinaryTreeNode_preorderTraversal(
+    BinaryTreeNode *root,
+    void (*fn)(BinaryTreeNode *))
+{
+    BinaryTreeNode *temp = root;
+    (*fn)(temp);
+    if (root->left)
+    {
+        BinaryTreeNode_preorderTraversal(root->left, (*fn));
+    }
+    if (root->right)
+    {
+        BinaryTreeNode_preorderTraversal(root->right, (*fn));
+    }
+}
+
+void BinaryTreeNode_inorderTraversal(
+    BinaryTreeNode *root,
+    void (*fn)(BinaryTreeNode *))
+{
+    BinaryTreeNode *temp = root;
+    if (root->left)
+    {
+        BinaryTreeNode_inorderTraversal(root->left, (*fn));
+    }
+    (*fn)(temp);
+    if (root->right)
+    {
+        BinaryTreeNode_inorderTraversal(root->right, (*fn));
+    }
+}
+
 #endif

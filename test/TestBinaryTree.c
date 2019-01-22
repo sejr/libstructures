@@ -2,6 +2,11 @@
 #include <assert.h>
 #include "../libstructures/BinaryTree.h"
 
+void printSingleNode(BinaryTreeNode *node)
+{
+    printf("BinaryTreeNode { address: %p, data: %d }\n", node, node->data);
+}
+
 int main()
 {
     // Instantiating individual nodes
@@ -39,7 +44,7 @@ int main()
                 BinaryTreeNode_init(4))));
 
     // Now we can print our tree!
-    BinaryTreeNode_print(anotherRoot);
+    // BinaryTreeNode_print(anotherRoot);
 
     // And check for equality:
     assert(root != anotherRoot);
@@ -47,4 +52,14 @@ int main()
 
     // Easily get tree height from perspective of any node
     assert(BinaryTreeNode_height(root) == 4);
+
+    // Traversal APIs as you would expect
+    printf("\nPRE-ORDER TRAVERSAL:\n");
+    BinaryTreeNode_preorderTraversal(root, printSingleNode);
+
+    printf("\nIN-ORDER TRAVERSAL:\n");
+    BinaryTreeNode_inorderTraversal(root, printSingleNode);
+
+    printf("\nPOST-ORDER TRAVERSAL:\n");
+    BinaryTreeNode_postorderTraversal(root, printSingleNode);
 }
