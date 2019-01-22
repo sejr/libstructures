@@ -1,4 +1,6 @@
-# libstructures
+<p align="center">
+    <img src="./assets/logo.svg" height="150px">
+</p>
 
 ## Motivation
 
