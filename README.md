@@ -1,14 +1,20 @@
 <p align="center">
-    <img src="./assets/logo.svg" height="100px">
+    <img src="./assets/logo.svg" height="50px">
 </p>
 
 ## Motivation
 
-The goal here is to provide a library of common data structures that is easy to ramp up productivity and difficult to use incorrectly. You should probably avoid using the library at this point because there's nothing here, and the stuff that _is_ here is poorly (if at all) tested.
+**libstructures** is a modern library that implements common data structures. Our goal is to help developers build safer systems in C by making the library easy to learn and difficult to misuse. At this point in time, however, this library is not production ready.
 
-That said, you're welcome to submit Issues and Pull Requests to help improve the quality of this library.
+You are welcome to submit Issues and Pull Requests to help improve the quality of this library.
+
+___
 
 ## Data Structures
+
+### Overview
+
+For each data structure, we provide an immutable implementation as well as a mutable one. By default (i.e. by convenience), all data structures are immutable. For example, `LinkedList` is an immutable linked list, and `MutableLinkedList`, as its name implies, is mutable. Each collection structure (e.g. `LinkedList`, `BinaryTree`, `Graph`) also has its own Node structure, which can be immutable or (by appending the `Mutable` prefix) mutable.
 
 ### LinkedList
 
