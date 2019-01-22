@@ -83,6 +83,26 @@ int BinaryTreeNode_equals(BinaryTreeNode *a, BinaryTreeNode *b)
     return left && right;
 }
 
+int BinaryTreeNode_height(BinaryTreeNode *node)
+{
+    int height = 1;
+    int leftHeight = height;
+    int rightHeight = height;
+    if (node->left)
+        leftHeight += BinaryTreeNode_height(node->left);
+    if (node->right)
+        rightHeight += BinaryTreeNode_height(node->right);
+
+    if (leftHeight > rightHeight)
+    {
+        return leftHeight;
+    }
+    else
+    {
+        return rightHeight;
+    }
+}
+
 void printDepth(int depth)
 {
     const int SPACE_COUNT = 4;

@@ -107,5 +107,8 @@ int main()
     // And check for equality:
     assert(root != anotherRoot);
     assert(BinaryTreeNode_equals(root, anotherRoot) == 1);
+
+    // Easily get tree height from perspective of any node
+    assert(BinaryTreeNode_height(root) == 4);
 }
 ```
