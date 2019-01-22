@@ -16,7 +16,7 @@ You are welcome to submit Issues and Pull Requests to help improve the quality o
 
 For each data structure, we provide an immutable implementation as well as a mutable one. By default (i.e. by convenience), all data structures are immutable. For example, `LinkedList` is an immutable linked list, and `MutableLinkedList`, as its name implies, is mutable. Each collection structure (e.g. `LinkedList`, `BinaryTree`, `Graph`) also has its own Node structure, which can be immutable or (by appending the `Mutable` prefix) mutable.
 
-### LinkedList
+### Linked List
 
 A linked list is a very simple structure with two primary components; some `data` associated with a linked list node, and a pointer to the address of the `next` node in the list. This is the foundation for many other data structures.
 
