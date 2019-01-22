@@ -29,6 +29,45 @@ BinaryTreeNode *BinaryTreeNode_init(int data)
     return node;
 }
 
+void BinaryTreeNode_free(BinaryTreeNode *node)
+{
+    if (node->left)
+        BinaryTreeNode_free(node->left);
+    if (node->right)
+        BinaryTreeNode_free(node->right);
+    free(node);
+}
+
+BinaryTreeNode *BinaryTreeNode_clone(BinaryTreeNode *node)
+{
+    BinaryTreeNode *clone = BinaryTreeNode_init(node->data);
+    if (node->left)
+        clone->left = BinaryTreeNode_clone(node->left);
+    if (node->right)
+        clone->right = BinaryTreeNode_clone(node->right);
+    return clone;
+}
+
+BinaryTreeNode *BinaryTreeNode_setLeft(
+    BinaryTreeNode *parent,
+    BinaryTreeNode *child)
+{
+    BinaryTreeNode *newParent = BinaryTreeNode_clone(parent);
+    // BinaryTreeNode_free(newParent->left);
+    newParent->left = BinaryTreeNode_clone(child);
+    return newParent;
+}
+
+BinaryTreeNode *BinaryTreeNode_setRight(
+    BinaryTreeNode *parent,
+    BinaryTreeNode *child)
+{
+    BinaryTreeNode *newParent = BinaryTreeNode_clone(parent);
+    // BinaryTreeNode_free(newParent->right);
+    newParent->right = BinaryTreeNode_clone(child);
+    return newParent;
+}
+
 void printDepth(int depth)
 {
     const int SPACE_COUNT = 4;
