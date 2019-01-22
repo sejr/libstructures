@@ -33,12 +33,23 @@ int main()
     assert(list->tail->data == 2);
 
     // Can append LinkedListNode to LinkedList
-    LinkedList_append(list, LinkedListNode_init(3));
-    assert(list->length == 3);
-    assert(list->head->data == 1);
-    assert(list->tail->data == 3);
+    LinkedList *newList = LinkedList_append(list, LinkedListNode_init(3));
+    assert(newList->length == 3);
+    assert(newList->head->data == 1);
+    assert(newList->tail->data == 3);
 
-    // Can pass a function into LinkedList_forEach
-    LinkedList_forEach(list, printNode);
-    LinkedList_forEachReverse(list, printNode);
+    // Create anotehr list for testing!
+    LinkedList *anotherList = LinkedList_append(list, LinkedListNode_init(3));
+    assert(anotherList->length == 3);
+    assert(anotherList->head->data == 1);
+    assert(anotherList->tail->data == 3);
+
+    // Now we can check equality between two lists!
+    assert(newList != anotherList);
+    assert(LinkedList_equals(newList, anotherList) == 1);
+
+    // Can pass a function into LinkedList_forEach. This is similar to a
+    // functional `map` statement, but we can't return anything at this point.
+    LinkedList_forEach(newList, printNode);
+    LinkedList_forEachReverse(anotherList, printNode);
 }

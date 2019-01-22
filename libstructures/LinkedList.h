@@ -183,19 +183,74 @@ LinkedList *LinkedList_init(LinkedListNode *head)
 }
 
 /**
+ * @brief Clones a list.
+ * 
+ * @param list the list to be cloned
+ * @return LinkedList* the new list
+ */
+LinkedList *LinkedList_clone(LinkedList *list)
+{
+    LinkedListNode *temp = list->head;
+    LinkedListNode *newHead = LinkedListNode_init(temp->data);
+    LinkedListNode *newTemp = newHead;
+    while (temp->next)
+    {
+        newTemp->next = LinkedListNode_init(temp->next->data);
+        newTemp = newTemp->next;
+        temp = temp->next;
+    }
+
+    return LinkedList_init(newHead);
+}
+
+/**
+ * @brief Determines if two linked lists have the same data. This does not
+ * determine if they point to the same address.
+ * 
+ * @param a first list
+ * @param b second list
+ * @return int 1 if equal, 0 otherwise
+ */
+int LinkedList_equals(LinkedList *a, LinkedList *b)
+{
+    // Sanity check before we iterate through the lists.
+    if (a->length != b->length)
+        return 0;
+
+    int result = 1;
+    LinkedListNode *tempA = a->head;
+    LinkedListNode *tempB = b->head;
+
+    // Iterate and check each value for equality.
+    while (tempA->next && tempB->next)
+    {
+        if (tempA->data != tempB->data)
+        {
+            result = 0;
+        }
+
+        // Move to next elements
+        tempA = tempA->next;
+        tempB = tempB->next;
+    }
+
+    return result;
+}
+
+/**
  * @brief Appends a single node to a LinkedList.
  * 
  * @param list the list to which we are adding a node
  * @param node the node to be added
  * @return int length of the new list
  */
-int LinkedList_append(LinkedList *list, LinkedListNode *node)
+LinkedList *LinkedList_append(LinkedList *list, LinkedListNode *node)
 {
-    LinkedListNode *temp = list->tail;
-    temp->next = node;
-    list->tail = list->tail->next;
-    list->length += 1;
-    return list->length;
+    LinkedList *clone = LinkedList_clone(list);
+    clone->tail->next = node;
+    clone->tail = clone->tail->next;
+    clone->length = list->length + 1;
+    return clone;
 }
 
 void LinkedListNode_forEach(LinkedListNode *head, void (*fn)(LinkedListNode *))
